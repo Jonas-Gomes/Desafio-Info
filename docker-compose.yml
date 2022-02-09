@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+  postgres:
+    container_name: postgres_container
+    image: postgres
+    environment:
+      POSTGRES_USER: info
+      POSTGRES_PASSWORD: info
+      POSTGRES_DB: desafioinfo
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+      
+  pgadmin4:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: info@gmail.com 
+      PGADMIN_DEFAULT_PASSWORD: info
+    ports:
+    - "8080:80"
+    networks:
+    - postgres
+
+networks:
+  postgres:
+    driver: bridge
+
+volumes:
+    postgres:
